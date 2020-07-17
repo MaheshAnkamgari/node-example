@@ -8,6 +8,7 @@ const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -26,14 +27,14 @@ app.get("", (req, res) => {
   res.render("index", {
     title: "Weather",
     name: "Mahesh",
-    extra: true,
+    extra: true
   });
 });
 
 app.get("/about", (req, res) => {
   res.render("about", {
     title: "About Me",
-    name: "Mahesh",
+    name: "Mahesh"
   });
 });
 
@@ -41,7 +42,7 @@ app.get("/help", (req, res) => {
   res.render("help", {
     helpText: "This is some helpful text.",
     title: "Help",
-    name: "Mahesh",
+    name: "Mahesh"
   });
 });
 
@@ -63,7 +64,7 @@ app.get("/weather", (req, res) => {
       res.send({
         forecast: forecastData,
         location: location,
-        address: req.query.address,
+        address: req.query.address
       });
     });
   });
@@ -73,7 +74,7 @@ app.get("/help/*", (req, res) => {
   res.render("404", {
     title: "404",
     name: "Mahesh",
-    errorMessage: "Help article not found.",
+    errorMessage: "Help article not found."
   });
 });
 
@@ -81,10 +82,10 @@ app.get("*", (req, res) => {
   res.render("404", {
     title: "404",
     name: "Mahesh",
-    errorMessage: "Page not found.",
+    errorMessage: "Page not found."
   });
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("Server is up on port 3000.");
 });
