@@ -1,8 +1,7 @@
 const request = require("postman-request");
 
 const forecast = (latitude, longitude, callback) => {
-  const url =
-    `http://api.weatherstack.com/current?access_key=7b1088ecb7edd08bc28fca86c3e9d9ef&query=${latitude},${longitude}`;
+  const url = `http://api.weatherstack.com/current?access_key=7b1088ecb7edd08bc28fca86c3e9d9ef&query=${latitude},${longitude}`;
 
   request({ url, json: true }, (error, { body }) => {
     if (error) {
@@ -13,10 +12,12 @@ const forecast = (latitude, longitude, callback) => {
       callback(
         undefined,
         body.current.weather_descriptions[0] +
-        " It is currently " +
-        body.current.temperature +
-        " degress out. It feels like " +
-        body.current.feelslike
+          " It is currently " +
+          body.current.temperature +
+          " degress out. It feels like " +
+          body.current.feelslike +
+          " degress out. . Humidity is" +
+          body.current.humidity
       );
     }
   });
